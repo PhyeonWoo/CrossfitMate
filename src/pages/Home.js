@@ -22,7 +22,6 @@ export default function Home() {
       <div style={{ flex: 1, padding: 16 }}>
         <h1 style={{ marginBottom: 16 }}>운동 목록</h1>
 
-        {/* WorkoutList 전체를 홈 안에 삽입 */}
         <WorkoutList />
         <div>
           <button onClick={onLogout}>Logout</button>
