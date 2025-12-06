@@ -29,7 +29,7 @@ export default function Sidebar() {
         boxSizing: "border-box",
       }}
     >
-      {/* 로고/타이틀 */}
+
       <div
         style={{
           fontWeight: 700,
@@ -43,16 +43,27 @@ export default function Sidebar() {
 
       {/* 네비게이션 링크 */}
       <nav>
-        {/* <NavLink
-          to="/workouts"
-          style={({ isActive }) => ({
-            ...linkBaseStyle,
-            background: isActive ? "#222" : "transparent",
-            color: isActive ? "#fff" : "#ccc",
-          })}
+
+        <NavLink
+        to="/home"
+        style={({ isActive}) => ({
+          ...linkBaseStyle,
+          background: isActive ? "#222" : "transparent",
+          color : isActive ? "#fff" : "#ccc",
+        })}
         >
-          🏠 홈
-        </NavLink> */}
+          🏠 홈        
+        </NavLink>
+         {/* <NavLink
+        //   to="/workouts"
+        //   style={({ isActive }) => ({
+        //     ...linkBaseStyle,
+        //     background: isActive ? "#222" : "transparent",
+        //     color: isActive ? "#fff" : "#ccc",
+        //   })}
+        // >
+        //   🏠 홈
+        // </NavLink> */}
 
         <NavLink
           to="/workouts"
