@@ -16,6 +16,7 @@ export default function Home() {
         background: "#111",
         color: "#fff",
       }}
+      
     >
 
       {/* 오른쪽 메인 영역 */}
