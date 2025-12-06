@@ -13,16 +13,18 @@ interface AdType {
 const ads: AdType[] = [
   { id: 1, src: ad1, alt: "광고 1" }, 
   { id: 2, src: ad2, alt: "광고 2" },
-  {id: 3, src: ad3, alt: "광고 3"},
+  { id: 3, src: ad3, alt: "광고 3"},
 ];
 
 const Ad = () => {
     const [index,setIndex] = useState<number>(0);
 
+  // 이전 광고 보기
   const prev = () => {
     setIndex((prevIdx) => (prevIdx === 0 ? ads.length - 1 : prevIdx - 1));
   };
 
+  // 다음 광고 보기
   const next = () => {
     setIndex((prevIdx) => (prevIdx === ads.length - 1 ? 0 : prevIdx + 1));
   };

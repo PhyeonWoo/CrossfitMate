@@ -10,10 +10,11 @@ import {
 import Home from "./pages/Home.tsx";
 import WorkoutList from "./pages/WorkoutList";
 import WorkoutDetail from "./pages/WorkoutDetail";
-import MapPage from "./pages/MapPage";
+// import MapPage from "./pages/MapPage";
 import Login from "./pages/Login.tsx";
 import Wod from "./pages/Wod.tsx";
 import Signup from "./pages/Signup.tsx";
+import Board from "./pages/Board.tsx";
 import Sidebar from "./components/SideBar.tsx";
 import { auth } from "./firebase/firebaseConfig";
 import { onAuthStateChanged, User } from "firebase/auth";
@@ -104,7 +105,7 @@ const App = () => {
                   )
                 }
               />
-              <Route
+              {/* <Route
                 path="/map"
                 element={
                   user ? (
@@ -113,12 +114,24 @@ const App = () => {
                     <Navigate to="/" replace />
                   )
                 }
-              />
+              /> */}
+
               <Route
                 path="/wod"
                 element={
                   user ? (
                     <Wod />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+
+              <Route
+                path="/board"
+                element={
+                  user ? (
+                    <Board />
                   ) : (
                     <Navigate to="/" replace />
                   )

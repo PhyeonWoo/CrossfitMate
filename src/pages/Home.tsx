@@ -34,7 +34,7 @@ const Home = () => {
   const [recentNotes, setRecentNotes] = useState<Note[]>([]);
   const [favoriteCount, setFavoriteCount] = useState<number>(0);
 
-  // 🔹 즐겨찾기 개수
+  // 즐겨찾기 개수
   useEffect(() => {
     try {
       const favs = getFavorites ? (getFavorites() as any[]) : [];
@@ -44,7 +44,8 @@ const Home = () => {
     }
   }, []);
 
-  // 🔹 최근 WOD 기록 3개
+
+  // 저장된 WOD 보기
   useEffect(() => {
     const fetchRecentNotes = async () => {
       const user = auth.currentUser;
@@ -54,8 +55,7 @@ const Home = () => {
         const q = query(
           collection(db, "notes"),
           where("uid", "==", user.uid),
-          orderBy("createdAt", "desc"),
-          limit(3)
+          limit(3),
         );
 
         const snap = await getDocs(q);

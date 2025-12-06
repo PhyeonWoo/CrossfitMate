@@ -73,6 +73,17 @@ const Sidebar = () => {
           📅 Today WOD
         </NavLink>
 
+        <NavLink
+          to="/Board"
+          style={({ isActive }): React.CSSProperties => ({
+            ...linkBaseStyle,
+            background: isActive ? "#222" : "transparent",
+            color: isActive ? "#fff" : "#ccc",
+          })}
+        >
+          📋 Board 
+        </NavLink>
+
         <div style={{ marginTop: "16px" }}>
           <button
             onClick={onLogout}

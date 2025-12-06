@@ -3,7 +3,7 @@ import WorkoutCard from "../components/WorkoutCard";
 import { db } from "../firebase/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import { isFavorite, toggleFavorite } from "../utils/localStorage";
-import AdCarousel from "../components/AdCarousel";
+import Ad from "../components/Ad.tsx";
 
 export default function WorkoutList() {
   const [workouts, setWorkouts] = useState([]);
@@ -27,7 +27,7 @@ export default function WorkoutList() {
 
   return (
     <div>
-      <AdCarousel/>
+      <Ad/>
       <h1>운동 목록</h1>
       {workouts.map((w) => (
         <WorkoutCard

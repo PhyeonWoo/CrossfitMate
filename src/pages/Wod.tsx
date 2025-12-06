@@ -26,11 +26,12 @@ interface Note {
   email: string | null;
 }
 
-// 저장, 수정, 삭제
+// 저장, 수정, 삭제 + 검색
 const Wod = () => {
   const [title, setTitle] = useState<string>("");
   const [memo, setMemo] = useState<string>("");
   const [myNotes, setMyNotes] = useState<Note[]>([]);
+  const [keyword, setKeyword] = useState<string>(""); // 🔍 검색어
 
   // 수정 모드 상태
   const [editId, setEditId] = useState<string | null>(null);
@@ -77,6 +78,16 @@ const Wod = () => {
   useEffect(() => {
     fetchMyNotes();
   }, []);
+
+  // 🔍 검색된 노트 (제목/내용에 keyword 포함)
+  const filteredNotes = myNotes.filter((note) => {
+    if (!keyword.trim()) return true; // 검색어 없으면 전체
+    const lower = keyword.toLowerCase();
+    return (
+      note.title.toLowerCase().includes(lower) ||
+      note.memo.toLowerCase().includes(lower)
+    );
+  });
 
   // 저장
   const handleSave = async (): Promise<void> => {
@@ -162,9 +173,16 @@ const Wod = () => {
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setTitle(e.target.value)
           }
-          style={{ marginBottom: 10, padding: 8, width: "250px" }}
+          style={{ 
+            width: "100%",
+            padding: 8,
+            marginBottom: 8,
+            borderRadius: 8,
+            border: "1px solid #444",
+            background: "#000",
+            color: "#fff",
+          }}
         />
-
         <textarea
           placeholder="메모 입력"
           value={memo}
@@ -172,10 +190,14 @@ const Wod = () => {
             setMemo(e.target.value)
           }
           style={{
-            marginBottom: 10,
+            width: "100%",
+            height: 120,
             padding: 8,
-            width: "250px",
-            height: "100px",
+            marginBottom: 8,
+            borderRadius: 8,
+            border: "1px solid #444",
+            background: "#000",
+            color: "#fff",
           }}
         />
 
@@ -184,14 +206,42 @@ const Wod = () => {
         </button>
       </div>
 
+      {/* 🔍 검색 입력 */}
+      <div
+        style={{
+          marginTop: "30px",
+          marginBottom: "10px",
+          display: "flex",
+          justifyContent: "center",
+          gap: "8px",
+        }}
+      >
+        <input
+          type="text"
+          placeholder="제목 또는 내용으로 검색"
+          value={keyword}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setKeyword(e.target.value)
+          }
+          style={{
+            padding: 8,
+            width: "260px",
+            borderRadius: 8,
+            border: "1px solid #444",
+            background: "#111",
+            color: "#fff",
+          }}
+        />
+      </div>
+
       {/* 목록 출력 */}
-      <div style={{ marginTop: "40px" }}>
+      <div style={{ marginTop: "20px" }}>
         <h3>내가 저장한 WOD</h3>
 
-        {myNotes.length === 0 ? (
-          <p>저장된 WOD가 없습니다.</p>
+        {filteredNotes.length === 0 ? (
+          <p>검색 결과가 없습니다.</p>
         ) : (
-          myNotes.map((note) => (
+          filteredNotes.map((note) => (
             <div
               key={note.id}
               style={{
