@@ -10,6 +10,7 @@ import {
   updateDoc,
   doc,
   collection,
+  deleteDoc,
   query,
   where,
   getDocs,
@@ -25,7 +26,7 @@ interface Note {
   email: string | null;
 }
 
-// 저장, 수정
+// 저장, 수정, 삭제
 const Wod = () => {
   const [title, setTitle] = useState<string>("");
   const [memo, setMemo] = useState<string>("");
@@ -123,6 +124,21 @@ const Wod = () => {
     } catch (error) {
       console.error("수정 실패:", error);
       alert("수정 실패");
+    }
+  };
+
+  // 삭제
+  const handleDelete = async (id: string): Promise<void> => {
+    if (!window.confirm("정말 삭제하시겠습니까?")) return;
+
+    try {
+      const noteRef = doc(db, "notes", id);
+      await deleteDoc(noteRef);
+      alert("삭제 완료");
+      fetchMyNotes();
+    } catch (error) {
+      console.error(error);
+      alert("삭제 중 오류가 발생했습니다.");
     }
   };
 
@@ -256,6 +272,21 @@ const Wod = () => {
                     }}
                   >
                     ✏️ 수정하기
+                  </button>
+
+                  <button
+                    onClick={() => handleDelete(note.id)}
+                    style={{
+                      marginLeft: 8,
+                      marginTop: 6,
+                      padding: "4px 10px",
+                      background: "#822",
+                      color: "#fff",
+                      borderRadius: 6,
+                      fontSize: 12,
+                    }}
+                  >
+                    🗑 삭제하기
                   </button>
                 </>
               )}
