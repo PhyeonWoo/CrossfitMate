@@ -15,7 +15,6 @@ export default function Home() {
         minHeight: "100vh",
         background: "#111",
         color: "#fff",
-        //
       }}
     >
 
