@@ -1,7 +1,6 @@
 // src/pages/Home.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AdCarousel from "../components/AdCarousel";
 import { db, auth } from "../firebase/firebaseConfig";
 import {
   collection,
@@ -12,6 +11,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { getFavorites } from "../utils/localStorage";
+import Ad from "../components/Ad.tsx";
 
 // Firestore에서 가져오는 WOD 노트 타입
 interface Note {
@@ -106,7 +106,7 @@ const Home = () => {
       </div>
 
       {/* 🔥 광고 캐러셀 */}
-      <AdCarousel />
+      <Ad />
 
       {/* 📊 요약 카드 3개 */}
       <div

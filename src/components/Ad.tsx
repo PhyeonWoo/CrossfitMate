@@ -4,14 +4,20 @@ import ad1 from "../assets/ad1.jpg";
 import ad2 from "../assets/ad2.jpg";
 import ad3 from "../assets/ad3.jpg";
 
-const ads = [
-  { id: 1, src: ad1, alt: "광고 1" },  // ✅ 문자열 말고 import한 변수
+interface AdType {
+    id: number;
+    src: string;
+    alt: string;
+}
+
+const ads: AdType[] = [
+  { id: 1, src: ad1, alt: "광고 1" }, 
   { id: 2, src: ad2, alt: "광고 2" },
   {id: 3, src: ad3, alt: "광고 3"},
 ];
 
-export default function AdCarousel() {
-  const [index, setIndex] = useState(0);
+const Ad = () => {
+    const [index,setIndex] = useState<number>(0);
 
   const prev = () => {
     setIndex((prevIdx) => (prevIdx === 0 ? ads.length - 1 : prevIdx - 1));
@@ -23,9 +29,8 @@ export default function AdCarousel() {
 
   const current = ads[index];
 
-  return (
+   return (
     <div
-    
       style={{
         width: "100%",
         maxWidth: "1000px",
@@ -36,7 +41,6 @@ export default function AdCarousel() {
         gap: "20px",
       }}
     >
-      
       <button
         onClick={prev}
         style={{
@@ -79,7 +83,8 @@ export default function AdCarousel() {
       >
         ›
       </button>
-
     </div>
   );
-}
+};
+
+export default Ad;

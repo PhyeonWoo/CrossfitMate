@@ -14,7 +14,7 @@ import MapPage from "./pages/MapPage";
 import Login from "./pages/Login.tsx";
 import Wod from "./pages/Wod.tsx";
 import Signup from "./pages/Signup.tsx";
-import Sidebar from "./components/SideBar";
+import Sidebar from "./components/SideBar.tsx";
 import { auth } from "./firebase/firebaseConfig";
 import { onAuthStateChanged, User } from "firebase/auth";
 
